@@ -1,14 +1,48 @@
 <script setup lang="ts">
 import { EnvelopeIcon, DocumentTextIcon } from '@heroicons/vue/24/outline';
 import { profile } from '../data/profile';
+import { ref, onMounted } from 'vue';
+
+const displayText = ref('');
+const fullText = profile.name;
+const isDeleting = ref(false);
+const typeSpeed = ref(150); // velocidad base de escritura
+
+const typeText = () => {
+  const current = displayText.value;
+
+  if (!isDeleting.value) {
+    displayText.value = fullText.substring(0, current.length + 1);
+    typeSpeed.value = 150; // Escribir más rápido
+
+    if (displayText.value === fullText) {
+      isDeleting.value = true;
+      typeSpeed.value = 1300; // Pausa antes de empezar a borrar
+    }
+  } else {
+    displayText.value = fullText.substring(0, current.length - 1);
+    typeSpeed.value = 250; // Borrar más lento
+
+    if (displayText.value === '') {
+      isDeleting.value = false;
+      typeSpeed.value = 150;
+    }
+  }
+
+  setTimeout(typeText, typeSpeed.value);
+};
+
+onMounted(() => {
+  typeText();
+});
 </script>
 
 <template>
   <header class="header">
     <div class="container">
       <div class="header-content">
-        <img src="https://picsum.photos/200" alt="Profile" class="profile-image" />
-        <h1>{{ profile.name }}</h1>
+        <img src="../assets/avatar-jordi.jpeg" alt="Profile" class="profile-image" />
+        <h1 class="typing-text">{nombre: {{ displayText }}}</h1>
         <p class="title">{{ profile.title }}</p>
         <p class="location">{{ profile.location }}</p>
 
@@ -35,6 +69,7 @@ import { profile } from '../data/profile';
 
 <style scoped>
 .header {
+  margin-top: -64px;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -47,8 +82,8 @@ import { profile } from '../data/profile';
 }
 
 .profile-image {
-  width: 160px;
-  height: 160px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 2rem;
@@ -97,5 +132,14 @@ h1 {
   .btn {
     width: 200px;
   }
+}
+
+.typing-text {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  min-height: 3.5rem;
+  font-family: monospace;
+  white-space: pre;
+  width: 10px;
 }
 </style>

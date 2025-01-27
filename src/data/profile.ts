@@ -28,6 +28,7 @@ interface Project {
   image: string;
   demo?: string;
   repo: string;
+  technologies: string[];
 }
 
 interface Education {
@@ -38,9 +39,9 @@ interface Education {
 }
 
 export const profile: Profile = {
-  name: "Jordi Moltó Solís",
+  name: "Jordi Moltó",
   title: "Frontend Developer",
-  location: "Alcoy, Alicante",
+  location: "🌍 Alcoy, Alicante",
   about:
     "Soy una persona responsable, autodidacta y paciente, con una rápida capacidad de aprendizaje. Estoy comprometido con el crecimiento constante, manteniéndome en formación continua para adquirir nuevos conocimientos y habilidades. Además, tengo interés por explorar áreas complementarias como la edición de video, fotografía y diseño, lo que amplía mi perspectiva y creatividad en los proyectos que desarrollo.",
   social: {
@@ -56,22 +57,19 @@ export const profile: Profile = {
     "TypeScript",
     "CSS / SCSS",
     "HTML",
-    "PHP",
-    "Laravel",
     "Java",
     "Git",
     "Docker",
-    "Blade",
+    "PHP",
+    "Laravel, Blade",
     "Playwright",
-    "Webpack",
-    "Wordpress avanzado",
-    "Inertia",
-    "Ziggy",
+    "WordPress avanzado",
     "Bootstrap",
     "Prestashop",
     "Visual Studio Code",
     "Terminal",
     "Vite",
+    "Figma",
   ],
   experience: [
     {
@@ -109,6 +107,7 @@ export const profile: Profile = {
       image: "../../src/assets/ofasty-resumen.png",
       demo: "",
       repo: "https://ofasty.com",
+      technologies: ["Vue", "Node", "Docker", "Vite"],
     },
     {
       name: "Webscrafting",
@@ -116,6 +115,7 @@ export const profile: Profile = {
         "Desarrollo de webs corporativas para empresas de desarrollo de software",
       image: "../../src/assets/webscrafting.png",
       repo: "",
+      technologies: ["WordPress", "Hostinger"],
     },
   ],
   education: [

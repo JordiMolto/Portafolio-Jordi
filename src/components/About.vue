@@ -6,10 +6,8 @@ import { profile } from '../data/profile';
   <div class="about">
     <div class="container">
       <h1 class="section-title">Sobre mí</h1>
-      <div class="content">
-        <p class="about-text">
-          {{ profile.about }}
-        </p>
+      <div class="about-text">
+        {{ profile.about }}
       </div>
     </div>
   </div>
@@ -21,20 +19,12 @@ import { profile } from '../data/profile';
   background-color: var(--bg-color);
 }
 
-.content {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  background-color: var(--bg-alt-color);
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
 .about-text {
   font-size: 1.1rem;
   line-height: 1.6;
   color: var(--text-color);
-  text-align: justify;
+  text-align: center;
 }
 
 @media (max-width: 768px) {

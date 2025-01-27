@@ -10,6 +10,9 @@
   --border-color: #e5e7eb;
   
   --shadow-color: rgba(0, 0, 0, 0.1);
+  
+  /* Transición unificada para todos los elementos */
+  --transition-speed: 0.3s;
 }
 
 :root.dark {
@@ -22,9 +25,19 @@
   --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
-/* Transición suave entre temas */
+/* Aplicar transición solo a las propiedades necesarias */
 * {
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  transition: background-color var(--transition-speed),
+              color var(--transition-speed),
+              border-color var(--transition-speed),
+              box-shadow var(--transition-speed);
+}
+
+/* Desactivar transición para elementos que no la necesitan */
+.icon,
+img,
+button {
+  transition: transform var(--transition-speed);
 }
 
 body {

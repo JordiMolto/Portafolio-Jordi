@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
 import DarkModeToggle from './DarkModeToggle.vue';
+import LanguageToggle from './LanguageToggle.vue';
 
 const isOpen = ref(false);
+const isScrolled = ref(false);
 
 const navigation = [
   { name: 'Inicio', href: '#inicio' },
@@ -21,13 +23,25 @@ const scrollToSection = (href: string) => {
   }
   isOpen.value = false;
 };
+
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 0; // Detecta si se ha hecho scroll
+};
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
 </script>
 
 <template>
-  <nav class="navbar">
+  <nav :class="['navbar', { 'navbar-scrolled': isScrolled }]">
     <div class="container navbar-container">
       <div class="navbar-brand">
-        <span class="logo"> Logo</span>
+        <img src="../assets/logo.png" alt="Logo" class="logo-img">
       </div>
 
       <div class="navbar-menu" :class="{ 'is-open': isOpen }">
@@ -38,6 +52,7 @@ const scrollToSection = (href: string) => {
       </div>
 
       <div class="navbar-end">
+        <LanguageToggle />
         <DarkModeToggle />
         <button class="navbar-toggle" @click="isOpen = !isOpen">
           <Bars3Icon v-if="!isOpen" class="icon" />
@@ -54,9 +69,14 @@ const scrollToSection = (href: string) => {
   top: 0;
   left: 0;
   right: 0;
-  background: var(--bg-color);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: transparent;
+  transition: background-color 0.3s;
   z-index: 1000;
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.navbar-scrolled {
+  background: var(--bg-color);
 }
 
 .navbar-container {
@@ -66,10 +86,8 @@ const scrollToSection = (href: string) => {
   height: 64px;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--primary-color);
+.logo-img {
+  width: 36px;
 }
 
 .navbar-menu {
@@ -103,7 +121,7 @@ const scrollToSection = (href: string) => {
 .navbar-end {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 @media (min-width: 768px) {

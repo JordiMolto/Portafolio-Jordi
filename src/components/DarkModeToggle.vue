@@ -2,13 +2,12 @@
 import { ref, onMounted, watch } from 'vue';
 import { MoonIcon, SunIcon } from '@heroicons/vue/24/outline';
 
-const isDark = ref(false);
+const isDark = ref(true);
 
 onMounted(() => {
   // Verificar preferencia guardada
   const savedTheme = localStorage.getItem('theme');
-  isDark.value = savedTheme === 'dark' || 
-    (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  isDark.value = savedTheme === 'light' ? false : true;
   
   applyTheme();
 });
