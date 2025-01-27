@@ -24,7 +24,7 @@ const handleSubmit = (e: Event) => {
         <!-- Información de contacto -->
         <div class="contact-info">
           <h2 class="contact-title">Ponte en contacto</h2>
-          <p class="contact-subtitle">No seas tímido, envíame un mensaje :)</p>
+          <p class="contact-subtitle">Envíame un mensaje :)</p>
 
           <div class="contact-details">
             <div class="contact-item">
@@ -101,6 +101,7 @@ const handleSubmit = (e: Event) => {
   font-weight: 700;
   margin-bottom: 1rem;
   color: var(--text-color);
+  text-align: left;
 }
 
 .contact-subtitle {
@@ -204,6 +205,10 @@ textarea:focus {
 
   .contact-info {
     padding-right: 0;
+    text-align: center;
+  }
+
+  .contact-title {
     text-align: center;
   }
 

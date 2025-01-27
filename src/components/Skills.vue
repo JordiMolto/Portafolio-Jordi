@@ -74,9 +74,11 @@ const getIconClass = (skill: string): string => {
         </div>
       </div>
 
-      <button @click="toggleView" class="view-toggle">
-        {{ showGrid ? 'Ver carrusel' : 'Ver todo' }}
-      </button>
+      <div class="btn-container">
+        <button @click="toggleView" class="view-toggle">
+          {{ showGrid ? 'Ver carrusel' : 'Ver todo' }}
+        </button>
+      </div>
     </div>
   </section>
 </template>
@@ -100,6 +102,11 @@ const getIconClass = (skill: string): string => {
   margin-bottom: 2rem;
 }
 
+.btn-container {
+  width: 100%;
+  text-align: center;
+}
+
 .view-toggle {
   padding: 0.5rem 1rem;
   background-color: var(--primary-color);
@@ -108,6 +115,7 @@ const getIconClass = (skill: string): string => {
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
+  width: 160px;
   transition: background-color 0.3s;
 }
 

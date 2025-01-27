@@ -8,42 +8,14 @@ const fullText = profile.name;
 const isDeleting = ref(false);
 const typeSpeed = ref(150); // velocidad base de escritura
 
-const typeText = () => {
-  const current = displayText.value;
-
-  if (!isDeleting.value) {
-    displayText.value = fullText.substring(0, current.length + 1);
-    typeSpeed.value = 150; // Escribir más rápido
-
-    if (displayText.value === fullText) {
-      isDeleting.value = true;
-      typeSpeed.value = 1300; // Pausa antes de empezar a borrar
-    }
-  } else {
-    displayText.value = fullText.substring(0, current.length - 1);
-    typeSpeed.value = 250; // Borrar más lento
-
-    if (displayText.value === '') {
-      isDeleting.value = false;
-      typeSpeed.value = 150;
-    }
-  }
-
-  setTimeout(typeText, typeSpeed.value);
-};
-
-onMounted(() => {
-  typeText();
-});
 </script>
-
 <template>
   <header class="header">
     <div class="container">
       <div class="header-content">
         <img src="../assets/avatar-jordi.jpeg" alt="Profile" class="profile-image" />
-        <h1 class="typing-text">{nombre: {{ displayText }}}</h1>
-        <p class="title">{{ profile.title }}</p>
+        <h1 class="typing-text">{{ profile.name }}</h1>
+        <p class="title">{{ `{ ` + profile.title + ` }` }}</p>
         <p class="location">{{ profile.location }}</p>
 
         <div class="social-links">
@@ -92,11 +64,10 @@ onMounted(() => {
 
 h1 {
   font-size: 3rem;
-  margin-bottom: 1rem;
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: var(--primary-color);
   margin-bottom: 0.5rem;
 }
@@ -140,6 +111,5 @@ h1 {
   min-height: 3.5rem;
   font-family: monospace;
   white-space: pre;
-  width: 10px;
 }
 </style>

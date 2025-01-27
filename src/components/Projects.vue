@@ -12,29 +12,21 @@ import { profile } from '../data/profile';
           <div class="project-content">
             <h3 class="project-title">{{ project.name }}</h3>
             <p class="project-description">{{ project.description }}</p>
-            
+
             <!-- Tags de tecnologías -->
             <div class="project-technologies">
-              <span v-for="tech in project.technologies" 
-                    :key="tech" 
-                    class="tech-tag">
+              <span v-for="tech in project.technologies" :key="tech" class="tech-tag">
                 {{ tech }}
               </span>
             </div>
 
             <div class="project-links">
-              <a v-if="project.demo" 
-                 :href="project.demo" 
-                 target="_blank" 
-                 rel="noopener noreferrer"
-                 class="project-link">
+              <a v-if="project.demo" :href="project.demo" target="_blank" rel="noopener noreferrer"
+                class="project-link">
                 Demo en vivo
               </a>
-              <a :href="project.repo" 
-                 target="_blank" 
-                 rel="noopener noreferrer"
-                 class="project-link">
-                Ver más
+              <a :href="project.repo" target="_blank" rel="noopener noreferrer" class="project-link">
+                Ver más >
               </a>
             </div>
           </div>
@@ -112,6 +104,7 @@ import { profile } from '../data/profile';
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
+  justify-content: end;
 }
 
 .project-link {
