@@ -2,6 +2,7 @@
 import { profile } from '../data/profile';
 import { ref } from 'vue';
 
+
 // Mapeo de skills con sus iconos correctos
 const skillIcons = {
   'JavaScript': 'devicon-javascript-plain colored',
@@ -23,7 +24,7 @@ const skillIcons = {
   'Terminal': 'devicon-bash-plain colored',
   'Vite': 'devicon-vitejs-plain colored',
   'Figma': 'devicon-figma-plain colored',
-};
+} as const;
 
 const isHovered = ref(false);
 const showGrid = ref(false);
@@ -42,6 +43,11 @@ const handleMouseLeave = () => {
 const toggleView = () => {
   showGrid.value = !showGrid.value;
 };
+
+// Helper function to get icon class
+const getIconClass = (skill: string): string => {
+  return (skillIcons as Record<string, string>)[skill] || 'devicon-github-original';
+};
 </script>
 
 <template>
@@ -54,7 +60,7 @@ const toggleView = () => {
         <div class="skills-carousel" :class="{ 'paused': isHovered }">
           <div class="skills-track">
             <div v-for="(skill, index) in duplicatedSkills" :key="`${skill}-${index}`" class="skill-item">
-              <i :class="[skillIcons[skill] || 'devicon-github-original']" class="skill-icon"></i>
+              <i :class="[getIconClass(skill)]" class="skill-icon"></i>
               <span class="skill-name">{{ skill }}</span>
             </div>
           </div>
@@ -63,7 +69,7 @@ const toggleView = () => {
 
       <div v-if="showGrid" class="skills-grid">
         <div v-for="skill in profile.skills" :key="skill" class="skill-item">
-          <i :class="[skillIcons[skill] || 'devicon-github-original']" class="skill-icon"></i>
+          <i :class="[getIconClass(skill)]" class="skill-icon"></i>
           <span class="skill-name">{{ skill }}</span>
         </div>
       </div>
@@ -74,7 +80,6 @@ const toggleView = () => {
     </div>
   </section>
 </template>
-
 <style scoped>
 .skills-section {
   padding: 4rem 0;
