@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
+import DarkModeToggle from './DarkModeToggle.vue';
 
 const isOpen = ref(false);
 
@@ -36,10 +37,13 @@ const scrollToSection = (href: string) => {
         </a>
       </div>
 
-      <button class="navbar-toggle" @click="isOpen = !isOpen">
-        <Bars3Icon v-if="!isOpen" class="icon" />
-        <XMarkIcon v-else class="icon" />
-      </button>
+      <div class="navbar-end">
+        <DarkModeToggle />
+        <button class="navbar-toggle" @click="isOpen = !isOpen">
+          <Bars3Icon v-if="!isOpen" class="icon" />
+          <XMarkIcon v-else class="icon" />
+        </button>
+      </div>
     </div>
   </nav>
 </template>
@@ -96,6 +100,12 @@ const scrollToSection = (href: string) => {
   height: 24px;
 }
 
+.navbar-end {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 @media (min-width: 768px) {
   .navbar-menu {
     display: flex;
@@ -122,6 +132,10 @@ const scrollToSection = (href: string) => {
 
   .navbar-item {
     padding: 0.75rem 1rem;
+  }
+
+  .navbar-end {
+    gap: 0.5rem;
   }
 }
 </style>

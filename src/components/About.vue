@@ -5,7 +5,7 @@ import { profile } from '../data/profile';
 <template>
   <div class="about">
     <div class="container">
-      <h1 class="section-title">Sobre Nosotros</h1>
+      <h1 class="section-title">Sobre mí</h1>
       <div class="content">
         <p class="about-text">
           {{ profile.about }}
