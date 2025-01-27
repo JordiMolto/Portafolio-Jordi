@@ -3,23 +3,16 @@ import { profile } from '../data/profile';
 </script>
 
 <template>
-  <section id="education" class="py-20 bg-white dark:bg-gray-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
-        Education
-      </h2>
-      <div class="space-y-8">
-        <div
-          v-for="(edu, index) in profile.education"
-          :key="index"
-          class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-sm"
-        >
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-            {{ edu.degree }}
-          </h3>
-          <p class="text-primary font-medium mt-1">{{ edu.institution }}</p>
-          <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">{{ edu.period }}</p>
-          <p v-if="edu.description" class="text-gray-600 dark:text-gray-300 mt-4">
+  <section id="educacion" class="education-section">
+    <div class="container">
+      <h2 class="section-title">Educación</h2>
+      <div class="education-list">
+        <div v-for="(edu, index) in profile.education" :key="index"
+          class="education-card">
+          <h3 class="education-degree">{{ edu.degree }}</h3>
+          <p class="education-institution">{{ edu.institution }}</p>
+          <p class="education-period">{{ edu.period }}</p>
+          <p v-if="edu.description" class="education-description">
             {{ edu.description }}
           </p>
         </div>
@@ -27,3 +20,47 @@ import { profile } from '../data/profile';
     </div>
   </section>
 </template>
+
+<style scoped>
+.education-section {
+  padding: 4rem 0;
+  background-color: var(--bg-color);
+}
+
+.education-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.education-card {
+  background: var(--bg-alt-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.education-degree {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.education-institution {
+  color: var(--primary-color);
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.education-period {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.education-description {
+  color: var(--text-color);
+  line-height: 1.5;
+}
+</style>

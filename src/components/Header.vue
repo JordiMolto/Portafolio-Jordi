@@ -15,7 +15,7 @@ import { profile } from '../data/profile';
         <div class="social-links">
           <a :href="`mailto:${profile.social.email}`" class="btn btn-primary">
             <EnvelopeIcon class="icon" />
-            Email
+            {{ profile.social.email }}
           </a>
           <a :href="profile.social.linkedin" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
             LinkedIn

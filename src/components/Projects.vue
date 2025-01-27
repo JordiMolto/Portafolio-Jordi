@@ -3,46 +3,40 @@ import { profile } from '../data/profile';
 </script>
 
 <template>
-  <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
-        Projects
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <section id="proyectos" class="projects-section">
+    <div class="container">
+      <h2 class="section-title">Proyectos</h2>
+      <div class="projects-grid">
         <div
           v-for="(project, index) in profile.projects"
           :key="index"
-          class="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-sm"
+          class="project-card"
         >
           <img
             :src="project.image"
             :alt="project.name"
-            class="w-full h-48 object-cover"
+            class="project-image"
           />
-          <div class="p-6">
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-              {{ project.name }}
-            </h3>
-            <p class="text-gray-600 dark:text-gray-300 mt-2">
-              {{ project.description }}
-            </p>
-            <div class="mt-4 flex space-x-4">
+          <div class="project-content">
+            <h3 class="project-title">{{ project.name }}</h3>
+            <p class="project-description">{{ project.description }}</p>
+            <div class="project-links">
               <a
                 v-if="project.demo"
                 :href="project.demo"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-primary hover:text-opacity-90 font-medium"
+                class="project-link"
               >
-                Live Demo
+                Demo en vivo
               </a>
               <a
                 :href="project.repo"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-primary hover:text-opacity-90 font-medium"
+                class="project-link"
               >
-                Repository
+                Repositorio
               </a>
             </div>
           </div>
@@ -51,3 +45,60 @@ import { profile } from '../data/profile';
     </div>
   </section>
 </template>
+
+<style scoped>
+.projects-section {
+  padding: 4rem 0;
+  background-color: var(--bg-alt-color);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  background: var(--bg-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.project-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.project-content {
+  padding: 1.5rem;
+}
+
+.project-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.project-description {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.project-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.project-link:hover {
+  text-decoration: underline;
+}
+</style>

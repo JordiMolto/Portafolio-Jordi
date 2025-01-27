@@ -3,16 +3,14 @@ import { profile } from '../data/profile';
 </script>
 
 <template>
-  <section id="skills" class="py-20 bg-gray-50 dark:bg-gray-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
-        Skills & Technologies
-      </h2>
-      <div class="flex flex-wrap justify-center gap-4">
+  <section id="habilidades" class="skills-section">
+    <div class="container">
+      <h2 class="section-title">Habilidades y Tecnologías</h2>
+      <div class="skills-container">
         <span
           v-for="skill in profile.skills"
           :key="skill"
-          class="px-4 py-2 bg-white dark:bg-gray-900 rounded-full text-primary font-medium shadow-sm"
+          class="skill-tag"
         >
           {{ skill }}
         </span>
@@ -20,3 +18,27 @@ import { profile } from '../data/profile';
     </div>
   </section>
 </template>
+
+<style scoped>
+.skills-section {
+  padding: 4rem 0;
+  background-color: var(--bg-alt-color);
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.skill-tag {
+  background: var(--bg-color);
+  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+</style>

@@ -5,12 +5,12 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
 const isOpen = ref(false);
 
 const navigation = [
-  { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Education', href: '#education' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Inicio', href: '#inicio' },
+  { name: 'Habilidades', href: '#habilidades' },
+  { name: 'Experiencia', href: '#experiencia' },
+  { name: 'Proyectos', href: '#proyectos' },
+  { name: 'Educación', href: '#educacion' },
+  { name: 'Contacto', href: '#contacto' },
 ];
 
 const scrollToSection = (href: string) => {
@@ -26,7 +26,7 @@ const scrollToSection = (href: string) => {
   <nav class="navbar">
     <div class="container navbar-container">
       <div class="navbar-brand">
-        <span class="logo">Portfolio</span>
+        <span class="logo">Ofasty</span>
       </div>
       
       <div class="navbar-menu" :class="{ 'is-open': isOpen }">
