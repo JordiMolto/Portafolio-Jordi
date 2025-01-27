@@ -1,13 +1,5 @@
 <script setup lang="ts">
-import { EnvelopeIcon, DocumentTextIcon } from '@heroicons/vue/24/outline';
 import { profile } from '../data/profile';
-import { ref, onMounted } from 'vue';
-
-const displayText = ref('');
-const fullText = profile.name;
-const isDeleting = ref(false);
-const typeSpeed = ref(150); // velocidad base de escritura
-
 </script>
 <template>
   <header class="header">
