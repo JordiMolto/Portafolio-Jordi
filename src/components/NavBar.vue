@@ -26,17 +26,12 @@ const scrollToSection = (href: string) => {
   <nav class="navbar">
     <div class="container navbar-container">
       <div class="navbar-brand">
-        <span class="logo">Ofasty</span>
+        <span class="logo"> Logo</span>
       </div>
-      
+
       <div class="navbar-menu" :class="{ 'is-open': isOpen }">
-        <a
-          v-for="item in navigation"
-          :key="item.name"
-          :href="item.href"
-          @click.prevent="scrollToSection(item.href)"
-          class="navbar-item"
-        >
+        <a v-for="item in navigation" :key="item.name" :href="item.href" @click.prevent="scrollToSection(item.href)"
+          class="navbar-item">
           {{ item.name }}
         </a>
       </div>

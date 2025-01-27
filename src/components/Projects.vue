@@ -7,36 +7,18 @@ import { profile } from '../data/profile';
     <div class="container">
       <h2 class="section-title">Proyectos</h2>
       <div class="projects-grid">
-        <div
-          v-for="(project, index) in profile.projects"
-          :key="index"
-          class="project-card"
-        >
-          <img
-            :src="project.image"
-            :alt="project.name"
-            class="project-image"
-          />
+        <div v-for="(project, index) in profile.projects" :key="index" class="project-card">
+          <img :src="project.image" :alt="project.name" class="project-image" />
           <div class="project-content">
             <h3 class="project-title">{{ project.name }}</h3>
             <p class="project-description">{{ project.description }}</p>
             <div class="project-links">
-              <a
-                v-if="project.demo"
-                :href="project.demo"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="project-link"
-              >
+              <a v-if="project.demo" :href="project.demo" target="_blank" rel="noopener noreferrer"
+                class="project-link">
                 Demo en vivo
               </a>
-              <a
-                :href="project.repo"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="project-link"
-              >
-                Repositorio
+              <a :href="project.repo" target="_blank" rel="noopener noreferrer" class="project-link">
+                Ver más
               </a>
             </div>
           </div>

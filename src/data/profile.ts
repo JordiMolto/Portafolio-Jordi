@@ -104,17 +104,17 @@ export const profile: Profile = {
   ],
   projects: [
     {
-      name: "E-commerce Platform",
-      description: "A modern e-commerce platform built with Vue 3 and Node.js",
-      image: "https://picsum.photos/400/300",
+      name: "Ofasty",
+      description: "Software TPV para restaurantes",
+      image: "../../src/assets/ofasty-resumen.png",
       demo: "",
-      repo: "",
+      repo: "https://ofasty.com",
     },
     {
-      name: "Task Management App",
+      name: "Webscrafting",
       description:
-        "A real-time task management application using Vue 3 and Firebase",
-      image: "https://picsum.photos/400/300",
+        "Desarrollo de webs corporativas para empresas de desarrollo de software",
+      image: "../../src/assets/webscrafting.png",
       repo: "",
     },
   ],
@@ -132,22 +132,4 @@ export const profile: Profile = {
       description: "",
     },
   ],
-};
-
-export const profileCompany = {
-  company: "Ofasty",
-  description: "Software TPV para restaurantes",
-  features: [
-    "Gestión de pedidos",
-    "Control de inventario",
-    "Informes de ventas",
-    "Gestión de mesas",
-    "Sistema de reservas",
-    "Gestión de empleados",
-  ],
-  contact: {
-    email: "contacto@ofasty.com",
-    phone: "+34 XXX XXX XXX",
-    address: "Calle Ejemplo, 123, 28001 Madrid",
-  },
 };
