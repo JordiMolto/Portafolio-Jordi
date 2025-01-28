@@ -1,22 +1,64 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { profile } from '../data/profile';
+import emailjs from '@emailjs/browser';
 
 const name = ref('');
 const email = ref('');
 const message = ref('');
+const loading = ref(false);
+const success = ref(false);
+const error = ref('');
 
-const handleSubmit = (e: Event) => {
+// Reemplaza estos valores con los tuyos de EmailJS
+const EMAIL_SERVICE_ID = 'service_82hae0d';
+const EMAIL_TEMPLATE_ID = 'template_ckmq2y8';
+const EMAIL_PUBLIC_KEY = 'HEsYcEtJac7K7X0la';
+
+// Inicializar EmailJS
+onMounted(() => {
+  emailjs.init(EMAIL_PUBLIC_KEY);
+});
+
+const handleSubmit = async (e: Event) => {
   e.preventDefault();
-  // Aquí manejarías el envío del formulario
-  console.log({ name: name.value, email: email.value, message: message.value });
-  // Resetear formulario
-  name.value = '';
-  email.value = '';
-  message.value = '';
+  loading.value = true;
+  error.value = '';
+  success.value = false;
+
+  const templateParams = {
+    from_name: name.value,
+    from_email: email.value,
+    message: message.value,
+    to_email: 'jordimolto1@gmail.com',
+  };
+
+  try {
+    const response = await emailjs.send(
+      EMAIL_SERVICE_ID,
+      EMAIL_TEMPLATE_ID,
+      templateParams
+    );
+
+    if (response.status === 200) {
+      success.value = true;
+      // Resetear formulario
+      name.value = '';
+      email.value = '';
+      message.value = '';
+    } else {
+      throw new Error('Error al enviar el mensaje');
+    }
+  } catch (err) {
+    console.error('Error details:', err);
+    error.value = 'Hubo un error al enviar el mensaje. Por favor, verifica tu configuración de EmailJS.';
+  } finally {
+    loading.value = false;
+  }
 };
 </script>
 
+<!-- El resto del template y estilos permanecen igual -->
 <template>
   <section id="contacto" class="contact-section">
     <div class="container">
@@ -57,22 +99,33 @@ const handleSubmit = (e: Event) => {
 
         <!-- Formulario de contacto -->
         <form @submit.prevent="handleSubmit" class="contact-form">
+          <div v-if="success" class="alert alert-success">
+            ¡Mensaje enviado con éxito!
+          </div>
+          <div v-if="error" class="alert alert-error">
+            {{ error }}
+          </div>
+
           <div class="form-group">
             <label for="name">Nombre:</label>
-            <input type="text" id="name" v-model="name" required placeholder="Tu nombre">
+            <input type="text" id="name" v-model="name" required placeholder="Tu nombre" :disabled="loading">
           </div>
 
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" v-model="email" required placeholder="tu.email@ejemplo.com">
+            <input type="email" id="email" v-model="email" required placeholder="tu.email@ejemplo.com"
+              :disabled="loading">
           </div>
 
           <div class="form-group">
             <label for="message">Mensaje:</label>
-            <textarea id="message" v-model="message" required placeholder="Escribe tu mensaje aquí..."></textarea>
+            <textarea id="message" v-model="message" required placeholder="Escribe tu mensaje aquí..."
+              :disabled="loading"></textarea>
           </div>
 
-          <button type="submit" class="submit-button">Enviar</button>
+          <button type="submit" class="submit-button" :disabled="loading">
+            {{ loading ? 'Enviando...' : 'Enviar' }}
+          </button>
         </form>
       </div>
     </div>
@@ -195,6 +248,30 @@ textarea:focus {
 
 .submit-button:hover {
   background-color: var(--primary-color-dark);
+}
+
+.alert {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.submit-button:disabled {
+  background-color: var(--primary-color-dark);
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 @media (max-width: 768px) {
